@@ -4,8 +4,7 @@ import sqlite3
 import pyperclip
 import os
 
-#dblocation = os.getcwd() + "\\\\files\\\\savelinks.db" 
-dblocation = 'C:\\Users\\cowyt\\Desktop\\python\\text files\\savelinks.db'
+dblocation = os.getcwd() + "\\\\files\\\\savelinks.db" 
 
 conn = sqlite3.connect(dblocation)
 cur = conn.cursor()
