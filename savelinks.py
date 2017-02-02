@@ -1,5 +1,4 @@
 
-
 import time
 import sqlite3
 import pyperclip
@@ -58,79 +57,7 @@ def search(TITLE):
     TITLELIST2= []
     LINKLIST2 = []
     TITLE = " ".join(TITLE)
-        print("[-]" + TITLE + " not found!")
-
-    else:
-        INP = input()
-        if INP != "":
-            INP = int(INP)-1
-            pyperclip.copy(LINKLIST2[INP])
-        
-    
-def addlinks():
-    print("TITLE: ")
-    TITLE = input()
-    print("LINK(just enter will copy from clipboard): ")
-    LINKS = input()
-    if LINKS == "":
-        LINKS = pyperclip.paste() 
-    cur.execute("INSERT INTO TODO(TITLE,LINKS) VALUES(?,?)", (TITLE,LINKS))
-    conn.commit()
-
-def updatelink(oldtitle,oldlink):
-    clear()
-    newlink = pyperclip.paste()
-    print(oldlink)
-    
-    print("New Link: " + newlink)
-    print("update?[Y]")
-    inp = input()
-    if inp.lower() == "y":
-        cur.execute("UPDATE TODO SET(TITLE = ?,LINKS = ?) WHERE TITLE = ?",(oldtitle,newlink,oldtitle))
-        conn.commit()
-    else:
-        print("Update canceled!")
-    
-    
-def main():
-    global TITLELIST
-    global LINKLIST
-    while(1):
-        showlist()
-        try:
-            INP = input()
-            if INP == "":
-                raise AssertionError
-            elif any(INP.lower() in x for x in ["quit","exit"]):
-                print("Exiting...")
-                break
-            elif "search" in INP.lower():
-                clear()
-                INP = INP.split()
-                search(INP[1:])
-            elif "delete" in INP.lower():
-                clear()
-                INP = INP.split()
-                print("Deleting {}".format(INP[1]))
-                delete(LINKLIST[int(INP[1])-1])
-            elif INP.lower() == "add":
-                clear()
-                addlinks()
-            elif INP.split()[0].lower() == "update":
-                updatelink(TITLELIST[int(int(INP.split()[1])-1)],LINKLIST[int(int(INP.split()[1])-1)])
-            else:
-                INP = int(INP)-1
-                pyperclip.copy(LINKLIST[INP])
-        
-        except Exception as e:
-            print(e)
-            usage()
-            time.sleep(2)
-
-usage()
-main()
-conn.commit()
-conn.close()  TITLE2 = "%"+ TITLE +"%"
+    TITLE2 = "%"+ TITLE +"%"
     print("searching for "+ TITLE + "...")
     cur.execute("select * from todo where TITLE like ?", (TITLE2,))
     TEMPLIST = cur.fetchall()
@@ -171,8 +98,9 @@ def updatelink(oldtitle,oldlink):
     print("update?[Y]")
     inp = input()
     if inp.lower() == "y":
-        cur.execute("UPDATE TODO SET(TITLE = ?,LINKS = ?) WHERE TITLE = ?",(oldtitle,newlink,oldtitle))
-        conn.commit()
+        #cur.execute("UPDATE TODO SET(TITLE = ?,LINKS = ?) WHERE TITLE = ?",(oldtitle,newlink,oldtitle))
+        #conn.commit()
+        pass
     else:
         print("Update canceled!")
     
